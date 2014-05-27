@@ -1,0 +1,16 @@
+# WP files to exclude from git
+wp-content/backup/*
+wp-content/cache/*
+wp-content/upgrade/*
+wp-content/uploads/*
+sitemap.*
+wp-config.php
+wp-local-config.php
+
+# SYS files to exclude from git
+*.DS_Store
+*[Tt]humbs.db
+*.Trashes
+
+# Re-include .htaccess in uploads
+!wp-content/uploads/.htaccess
