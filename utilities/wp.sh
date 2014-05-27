@@ -2,7 +2,7 @@
 cd /Applications/MAMP/htdocs
 printf "What would you like to name your new WordPress root directory (i.e. mywpdir)? "
 read NEWDIR
-git clone https://github.com/WordPress/WordPress.git $NEWDIR
+git clone https://github.com/work-shop/wp-template.git $NEWDIR
 cd $NEWDIR
 printf "What version of WordPress would you like to use? It must be a non-beta release (i.e. 3.4.2). "
 read WPVER
