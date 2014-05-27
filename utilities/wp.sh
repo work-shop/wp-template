@@ -1,20 +1,34 @@
 #!/bin/sh
+
+printf "Work-Shop WordPress Template Installation Script. (v1.0)\n"
+
 cd /Applications/MAMP/htdocs
 printf "What would you like to name your new WordPress root directory (i.e. mywpdir)? "
 read NEWDIR
-git clone https://github.com/work-shop/wp-template.git $NEWDIR
+printf "Retrieving latest version of WordPress.\n"
+git clone https://github.com/WordPress/WordPress.git $NEWDIR
 cd $NEWDIR
-printf "What version of WordPress would you like to use? It must be a non-beta release (i.e. 3.4.2). "
-read WPVER
-git checkout $WPVER
 rm -rf .git
-printf "MySQL User: "
+cd ../
+
+printf "Retrieving latest version of the Work-Shop WordPress Template.\n"
+git clone https://github.com/work-shop/wp-template.git $NEWDIR-tmp
+rm -rf $NEWDIR-tmp/.git
+printf "Merging.\n"
+cp -R $NEWDIR-tmp/wp-content/* $NEWDIR/wp-content/
+rm -rf $NEWDIR-tmp
+
+printf "MySQL User: (\"enter\" for default)"
 read MYSQLUSER
 if [ "$MYSQLUSER" = "" ]; then
 	set MYSQLUSER = "root"
 fi
-printf "MySQL Password: "
+printf "MySQL Password: (\"enter\" for default)"
 read MYSQLPWD
+if [ "$MYSQLPWD" = "" ]; then
+	set MYSQLPWD = "root"
+fi
+
 printf "What would you like to name your new database (i.e. newwpdb)? "
 read NEWDB
 echo "CREATE DATABASE $NEWDB; GRANT ALL ON $NEWDB.* TO '$MYSQLUSER'@'localhost';" | ../../Library/bin/mysql -u$MYSQLUSER -p$MYSQLPWD
