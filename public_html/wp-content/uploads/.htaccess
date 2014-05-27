@@ -1,7 +1,0 @@
-# Attempt to load files from a production target if the files are absent in local
-<IfModule mod_rewrite.c>
-  RewriteEngine on
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule (.*) http://  <production_server_here>  /wp-content/uploads/$1
-</IfModule>
