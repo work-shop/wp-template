@@ -16,9 +16,38 @@ printf "Retrieving latest version of the Work-Shop WordPress Template.\n"
 git clone https://github.com/work-shop/wp-template.git $NEWDIR-tmp
 rm -rf $NEWDIR-tmp/.git
 printf "Merging.\n"
-cp -vR $NEWDIR-tmp/wp-content/* $NEWDIR/wp-content/
-cp -vf $NEWDIR-tmp/utilities/wp-config.php $NEWDIR
+cp -R $NEWDIR-tmp/wp-content/* $NEWDIR/wp-content/
+cp -f $NEWDIR-tmp/utilities/wp-config.php $NEWDIR
+mv $NEWDIR-tmp/utilities/instance.gitignore $NEWDIR/.gitignore
 rm -rf $NEWDIR-tmp
 
-printf "Done. Remember to update the attributes in the wp-config.php file in $NEWDIR \n\n"
+cd $NEWDIR
+git init
+git add .
+git commit -m "Initial commit"
+
+printf "Enter the name of the shared database here: "
+read SHAREDDB
+
+printf "Enter the name of the mysql user for this database here: (\"root\" is default)"
+read MYSQLUSR
+if [ "$MYSQLUSER" = "" ]; then
+	set MYSQLUSER = "root"
+fi
+printf "Enter the name of the mysql password for this database: (\"root\" is default)"
+read MYSQLPASS
+if [ "$MYSQLPWD" = "" ]; then
+	set MYSQLPWD = "root"
+fi
+
+DBUSER=$"username_here"
+DBPASS=$"password_here"
+DBNAME=$"database_name_here"
+
+sed -i '' -e "s/${DBUSER}/${MYSQLUSER}/g" wp-config.php
+sed -i '' -e "s/${DBPASS}/${MYSQLPWD}/g" wp-config.php
+sed -i '' -e "s/${DBNAME}/${NEWDB}/g" wp-config.php
+
+
+open http://work-shop.ws/cpanel
 
