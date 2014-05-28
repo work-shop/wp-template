@@ -4,8 +4,6 @@ wp-content/cache/*
 wp-content/upgrade/*
 wp-content/uploads/*
 sitemap.*
-wp-config.php
-wp-local-config.php
 
 # SYS files to exclude from git
 *.DS_Store
@@ -13,4 +11,4 @@ wp-local-config.php
 *.Trashes
 
 # Re-include .htaccess in uploads
-!wp-content/uploads/.htaccess
+# !wp-content/uploads/.htaccess
