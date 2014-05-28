@@ -1,0 +1,10 @@
+
+/* color the advanced custom fields "message" field */
+.field_type-message{
+	background: #f7ff7f;
+}
+
+/* hide the re-order plugin advertisement box */
+#cpt_info_box{
+	display: none !important;
+}
