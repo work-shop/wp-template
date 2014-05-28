@@ -31,13 +31,13 @@ read SHAREDDB
 
 printf "Enter the name of the mysql user for this database here: (\"root\" is default)"
 read MYSQLUSR
-if [ "$MYSQLUSER" = "" ]; then
-	set MYSQLUSER = "root"
+if [ "$MYSQLUSR" = "" ]; then
+	set MYSQLUSR = "root"
 fi
 printf "Enter the name of the mysql password for this database: (\"root\" is default)"
 read MYSQLPASS
-if [ "$MYSQLPWD" = "" ]; then
-	set MYSQLPWD = "root"
+if [ "$MYSQLPASS" = "" ]; then
+	set MYSQLPASS = "root"
 fi
 
 DBUSER=$"username_here"
