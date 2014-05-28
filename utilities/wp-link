@@ -1,0 +1,24 @@
+#! /bin/bash
+
+printf "Work-Shop WordPress Remote Setup. (v1.0)\n"
+
+
+cd /Applications/MAMP/htdocs
+printf "What would you like to name your new WordPress root directory (i.e. mywpdir)? "
+read NEWDIR
+printf "Retrieving latest version of WordPress.\n"
+git clone https://github.com/WordPress/WordPress.git $NEWDIR
+cd $NEWDIR
+rm -rf .git
+cd ../
+
+printf "Retrieving latest version of the Work-Shop WordPress Template.\n"
+git clone https://github.com/work-shop/wp-template.git $NEWDIR-tmp
+rm -rf $NEWDIR-tmp/.git
+printf "Merging.\n"
+cp -vR $NEWDIR-tmp/wp-content/* $NEWDIR/wp-content/
+cp -vf $NEWDIR-tmp/utilities/wp-config.php $NEWDIR
+rm -rf $NEWDIR-tmp
+
+printf "Done. Remember to update the attributes in the wp-config.php file in $NEWDIR \n\n"
+
